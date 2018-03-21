@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Render} from 'react-dom';
-import {BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom'
+import {Router, Route, Link, Switch} from 'react-router-dom'
 
 
 class Calendar extends Component {
