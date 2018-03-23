@@ -7,11 +7,29 @@ class Editor extends Component {
     super(props);
 
     this.setDay= this.setDay.bind(this);
+    this.disabledMessage= this.disabledMessage.bind(this);
+
+  }
+  disabledMessage(event) {
+    let valueMessage = event.target.value;
+    let message = document.querySelector('textarea[name="message"]');
+    valueMessage == "good" ? message.disabled=false : message.disabled=true;
   }
 
   setDay(){
-    //Validar que los datos del formulario estan completos y/o correctos
-    var json={
+    let validation = true;
+    let date = document.querySelector('.date');
+    let face = document.querySelector('.face');
+    let message = document.querySelector('.message');
+
+    let regExp = ''
+
+    if(date.value == "" ){
+      validation == false;
+    }
+
+
+    let json={
       date:"12/12/12",
       face:"1",
       message:"prueba"
@@ -25,18 +43,18 @@ class Editor extends Component {
          <form>
             <div>
               <label for="calendary">Fecha</label>
-              <input type="date" name="day" id="calendary" value="" />
+              <input className="date" type="text" name="day" id="calendary"  />
             </div>
             <div>
               <label>Estado</label>
-              <input type="radio" name="smiley" value="good" checked={true}/> :)
-              <input type="radio" name="smiley" value="bad" /> :(
+              <input type="radio" name="smiley" value="good" onClick={this.disabledMessage} checked={true}/> :)
+              <input type="radio" name="smiley" value="bad" onClick={this.disabledMessage}  /> :(
             </div>
             <div>
               <label for="message">Mensaje</label>
-              <textarea name="message" id="message" rows="2" cols="30" placeholder="¿Por qué es un buen día?"></textarea>
+              <textarea name="message" id="message" rows="2"  cols="30"  placeholder="¿Por qué es un buen día?"></textarea>
             </div>
-            <button className="buttonSave" onClick={this.setDay}>Guardar</button>
+            <Link to="/"><button className="buttonSave" >Guardar</button></Link>
             <Link to="/"><button className="buttonCancel">Cancelar</button></Link>
           </form>
        </div>

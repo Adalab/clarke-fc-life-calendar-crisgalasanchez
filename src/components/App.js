@@ -40,7 +40,8 @@ class App extends Component {
       <div className="App">
         <Switch>
 					<Route exact path='/' render={ () => <Calendar data={this.state.calendarData}/> } />
-					<Route path='/editor' render={ () => <Editor handler={this.handlerEditor}/> } />
+					<Route path='/editor' render={ () => <Editor
+              handler={this.handlerEditor}/> } />
 				</Switch>
       </div>
     );

@@ -28,7 +28,7 @@ class Calendar extends Component {
   render() {
     return (
       <div className="calendar">
-        <Link to="/editor" ><button type="button">+</button></Link>
+        <Link to="/editor" >+</Link>
         <div className="smileys">
         {this.paintSmileys()}
         </div>
