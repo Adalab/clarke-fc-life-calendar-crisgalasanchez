@@ -5,18 +5,43 @@ import { Route, Switch } from 'react-router-dom';
 
 class App extends Component {
   constructor(props){
-  super(props);
+    super(props);
 
+    this.handlerEditor= this.handlerEditor.bind(this);
 
-}
+    this.state = {
+      calendarData: []
+  	}
+  }
 
-componentWillMount() {
-}
+  componentWillMount() {
+    let registry = localStorage.getItem("registry");
+    if(registry != null){
+      this.setState({
+        calendarData: registry
+      });
+    }
+  }
+
+  handlerEditor(json){
+    let registry = localStorage.getItem("registry");
+    if(registry == null){
+      registry = new Array();
+    }
+    registry.push(JSON.stringify(json));
+    localStorage.setItem("registry",JSON.stringify(registry));
+    this.setState({
+      calendarData: registry
+    });
+  }
+
   render() {
     return (
       <div className="App">
-        <Editor />
-        <Calendar />
+        <Switch>
+					<Route exact path='/' render={ () => <Calendar data={this.state.calendarData}/> } />
+					<Route path='/editor' render={ () => <Editor handler={this.handlerEditor}/> } />
+				</Switch>
       </div>
     );
   }
