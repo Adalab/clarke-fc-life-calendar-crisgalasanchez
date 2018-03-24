@@ -1,0 +1,23 @@
+label{
+  display: block;
+  text-align: left;
+  padding: 10px;
+  font-family: sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+}
+.day{
+  display: flex;
+  flex-direction: column;
+}
+.input{
+  width: 80%;
+  border: none;
+  border: 1px solid grey;
+  padding: 5px;
+  border-radius: 5px;
+}
+.selected{
+  border-radius: 2px;
+  background-color: #0ec4f7;
+}

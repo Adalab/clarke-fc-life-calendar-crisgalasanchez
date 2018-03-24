@@ -8,12 +8,41 @@ class App extends Component {
     super(props);
 
     this.handlerEditor= this.handlerEditor.bind(this);
-
+    this.handleOnClickMood = this.handleOnClickMood.bind(this);
+    this.handleOnChangeMsg = this.handleOnChangeMsg.bind(this);
     this.state = {
-      calendarData: []
+      calendarData: [],
+      moodValue: '',
+      msgValue: ''
   	}
   }
 
+  handleOnClickMood (e) {
+      const moodValue = e.target.value;
+      this.setState({
+        moodValue: moodValue
+      })
+    }
+
+    handleOnChangeMsg (e) {
+      const msgValue = e.target.value;
+      this.setState({
+        msgValue: msgValue
+      })
+    }
+    handlerEditor(json){
+      let registry = localStorage.getItem("registry");
+      if(registry == null){
+        registry = new Array();
+      }else{
+        registry = JSON.parse(registry);
+      }
+      registry.push(JSON.stringify(json));
+      localStorage.setItem("registry",JSON.stringify(registry));
+      this.setState({
+        calendarData: JSON.stringify(registry)
+      });
+    }
   componentWillMount() {
     let registry = localStorage.getItem("registry");
     if(registry != null){
@@ -23,17 +52,7 @@ class App extends Component {
     }
   }
 
-  handlerEditor(json){
-    let registry = localStorage.getItem("registry");
-    if(registry == null){
-      registry = new Array();
-    }
-    registry.push(JSON.stringify(json));
-    localStorage.setItem("registry",JSON.stringify(registry));
-    this.setState({
-      calendarData: registry
-    });
-  }
+
 
   render() {
     return (
@@ -41,7 +60,11 @@ class App extends Component {
         <Switch>
 					<Route exact path='/' render={ () => <Calendar data={this.state.calendarData}/> } />
 					<Route path='/editor' render={ () => <Editor
-              handler={this.handlerEditor}/> } />
+              handler={this.handlerEditor}
+              moodValue = {this.state.moodValue}
+              msgValue = {this.state.msgValue}
+              handleOnClickMood = {this.handleOnClickMood}
+              handleOnChangeMsg = {this.handleOnChangeMsg}/> } />
 				</Switch>
       </div>
     );

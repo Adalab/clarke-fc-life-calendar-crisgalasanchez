@@ -1,0 +1,13 @@
+.mood{
+  width: 70px;
+  height: 70px;
+}
+.list--mood{
+  width: 100%;
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-row-gap: 10px;
+  text-align: center;
+}
