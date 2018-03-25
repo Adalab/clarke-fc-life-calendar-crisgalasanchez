@@ -46,17 +46,17 @@ class Editor extends Component {
       <div className="editor">
          <form>
             <div className="day" >
-              <label for="calendary">Fecha</label>
+              <label htmlFor="calendary">Fecha</label>
               <input className="input" type="date" name="date" id="calendary" required="true" />
               <p className="error disabled">Debe introducir una fecha</p>
             </div>
             <div>
               <label>Estado</label>
-              <input className="selected" type="radio" name="face" value="good" onClick={this.disabledMessage} onChange={this.props.handleOnClickMood} /> :)
+              <input className="selected" type="radio" name="face" value="good" onClick={this.disabledMessage} onChange={this.props.handleOnClickMood} checked/> :)
               <input className="selected" type="radio" name="face" value="bad" onClick={this.disabledMessage} onChange={this.props.handleOnClickMood} /> :(
             </div>
             <div>
-              <label for="message">Mensaje</label>
+              <label htmlFor="message">Mensaje</label>
               <textarea className="input" name="message" id="message" rows="2"  cols="30"  placeholder="¿Por qué es un buen día?" onChange={this.props.handleOnChangeMsg} ></textarea>
             </div>
             <div className="editor__buttons">
